@@ -6,8 +6,8 @@ Initialize the models package
 from os import getenv
 
 # Import the necessary storage classes
-from models.db_storage import DBStorage
-from models.file_storage import FileStorage
+from models.engine.db_storage import DBStorage
+from models.engine.file_storage import FileStorage
 
 # Check the value of the HBNB_TYPE_STORAGE environment variable
 storage_t = getenv("HBNB_TYPE_STORAGE")
