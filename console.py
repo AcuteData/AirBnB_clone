@@ -127,9 +127,7 @@ class HBNBCommand(cmd.Cmd):
             return False
         for key in obj_dict:
             obj_list.append(str(obj_dict[key])
-           sys.stdout.write("[")
-           sys.stdout.write(", ".join(obj_list))
-           sys.stdout.write("]\n")
+            print("[" + ", ".join(obj_list) + "]")
            # print("[", end="")
            # print(", ".join(obj_list), end="")
            # print("]")
