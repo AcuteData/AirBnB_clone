@@ -210,65 +210,12 @@ class HBNBCommand(cmd.Cmd):
 
 ###
 def do_User_show(self, arg):
-    """ Show User instance """
-    args = shlex.split(arg)
-    if len(args) == 0:
-        print("** class name missing **")
-        return
-    class_name = args[0]
-    if class_name in classes:
-        if len(args) > 1:
-            instance_id = args[1]
-            key = class_name + "." + instance_id
-            if key in models.storage.all():
-                print(models.storage.all()[key])
-            else:
-                print("** no instance found **")
-        else:
-            print("** instance id missing **")
-    else:
-        print("** class doesn't exist **")
+""" Show User instance """
+           self.do_show("User " + arg)
 
 def do_User_update(self, arg):
-    """ Update User instance """
-    args = shlex.split(arg)
-    if len(args) == 0:
-        print("** class name missing **")
-    elif args[0] in classes:
-        if len(args) > 1:
-            instance_id = args[1]
-            key = args[0] + "." + instance_id
-            if key in models.storage.all():
-                if len(args) > 2:
-                    try:
-                        attr_dict = eval(args[2])
-                        if type(attr_dict) is dict:
-                            for k, v in attr_dict.items():
-                                if args[0] == "Place":
-                                    if k in integers:
-                                        try:
-                                            v = int(v)
-                                        except ValueError:
-                                            v = 0
-                                    elif k in floats:
-                                        try:
-                                            v = float(v)
-                                        except ValueError:
-                                            v = 0.0
-                                setattr(models.storage.all()[key], k, v)
-                            models.storage.all()[key].save()
-                        else:
-                            print("** dictionary must be valid **")
-                    except:
-                        print("** dictionary must be valid **")
-                else:
-                    print("** dictionary missing **")
-            else:
-                print("** no instance found **")
-        else:
-            print("** instance id missing **")
-    else:
-        print("** class doesn't exist **")
+""" Update User instance """
+        self.do_update("User " + arg)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
