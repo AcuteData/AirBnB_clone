@@ -13,7 +13,7 @@ from models.state import State
 from models.user import User
 from models.amenity import Amenity
 import shlex  # for splitting the line along spaces except in double quotes
-from __future__ import print_function
+# from __future__ import print_function
 import sys
 
 classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
