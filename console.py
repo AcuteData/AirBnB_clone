@@ -170,8 +170,8 @@ class HBNBCommand(cmd.Cmd):
                   print("** class name missing **")
            elif args[0] in classes:
                   if len(args) > 1:
-                  instance_id = args[1]
-                  key = args[0] + "." + instance_id
+                      instance_id = args[1]
+                      key = args[0] + "." + instance_id
                       if key in models.storage.all():
                           if len(args) > 2:
                           attribute_name = args[2]
