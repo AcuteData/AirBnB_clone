@@ -183,7 +183,7 @@ class HBNBCommand(cmd.Cmd):
                                                 attribute_value = int(attribute_value)
                                             except ValueError:
                                                 attribute_value = 0
-                                       elif attribute_name in floats:
+                                        elif attribute_name in floats:
                                             try:
                                                 attribute_value = float(attribute_value)
                                             except ValueError:
