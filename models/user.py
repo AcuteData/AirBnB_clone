@@ -6,21 +6,22 @@ from sqlalchemy.orm import relationship
 from models.base_model import BaseModel, Base
 
 class User(BaseModel, Base):
-&quot;&quot;&quot;Representation of a User&quot;&quot;&quot;
-if getenv(&quot;HBNB_TYPE_STORAGE&quot;) == &#39;db&#39;:
-__tablename__ = &#39;users&#39;
-user_email = Column(String(128), nullable=False)
-user_password = Column(String(128), nullable=False)
-user_first_name = Column(String(128), nullable=True)
-user_last_name = Column(String(128), nullable=True)
-user_places = relationship(&quot;Place&quot;, cascade=&quot;all&quot;)
-user_reviews = relationship(&quot;Review&quot;, cascade=&quot;all&quot;)
-else:
-user_email = &quot;&quot;
-user_password = &quot;&quot;
-user_first_name = &quot;&quot;
-user_last_name = &quot;&quot;
+    """Representation of a User"""
+    if getenv("HBNB_TYPE_STORAGE") == 'db':
+        __tablename__ = 'users'
+        user_email = Column(String(128), nullable=False)
+        user_password = Column(String(128), nullable=False)
+        user_first_name = Column(String(128), nullable=True)
+        user_last_name = Column(String(128), nullable=True)
+        user_places = relationship("Place", cascade="all")
+        user_reviews = relationship("Review", cascade="all")
+    else:
+        user_email = ""
+        user_password = ""
+        user_first_name = ""
+        user_last_name = ""
 
-def __init__(self, *args, **kwargs):
-&quot;&quot;&quot;Initializes a User&quot;&quot;&quot;
-super().__init__(*args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        """Initializes a User"""
+        super().__init__(*args, **kwargs)
+
