@@ -210,12 +210,12 @@ class HBNBCommand(cmd.Cmd):
 
 ###
 def do_User_show(self, arg):
-           """ Show User instance """
-           self.do_show("User " + arg)
+    """ Show User instance """
+    self.do_show("User " + arg)
 
 def do_User_update(self, arg):
            """ Update User instance """
-        self.do_update("User " + arg)
+    self.do_update("User " + arg)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
