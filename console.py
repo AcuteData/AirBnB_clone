@@ -13,6 +13,7 @@ from models.state import State
 from models.user import User
 from models.amenity import Amenity
 import shlex  # for splitting the line along spaces except in double quotes
+from __future__ import print_function
 
 classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
            "Place": Place, "Review": Review, "State": State, "User": User}
@@ -125,7 +126,9 @@ class HBNBCommand(cmd.Cmd):
             return False
         for key in obj_dict:
             obj_list.append(str(obj_dict[key])
-        print("[" + ", ".join(obj_list) + "]")
+           print("[", end="")
+           print(", ".join(obj_list), end="")
+           print("]")
 
     def do_update(self, arg):
         """ Update an instance based on the class name and id """
