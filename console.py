@@ -17,6 +17,8 @@ import shlex  # for splitting the line along spaces except in double quotes
 classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
            "Place": Place, "Review": Review, "State": State, "User": User}
 
+integers = ["number_rooms", "number_bathrooms", "max_guest", "price_by_night"]
+floats = ["latitude", "longitude"]
 
 class HBNBCommand(cmd.Cmd):
     """ HBNB console """
@@ -122,17 +124,14 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return False
         for key in obj_dict:
-            obj_list.append(str(obj_dict[key]))
+            obj_list.append(str(obj_dict[key])
         print("[", end="")
         print(", ".join(obj_list), end="")
         print("]")
 
     def do_update(self, arg):
-        """ Update an instance based on the class name, id, attribute & value """
+        """ Update an instance based on the class name and id """
         args = shlex.split(arg)
-        integers = ["number_rooms", "number_bathrooms", "max_guest",
-                    "price_by_night"]
-        floats = ["latitude", "longitude"]
         if len(args) == 0:
             print("** class name missing **")
         elif args[0] in classes:
@@ -168,5 +167,47 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
+    def do_update_with_dict(self, arg):
+        """ Update an instance based on the class name and id with a dictionary """
+        args = shlex.split(arg)
+        if len(args) == 0:
+            print("** class name missing **")
+        elif args[0] in classes:
+            if len(args) > 1:
+                instance_id = args[1]
+                key = args[0] + "." + instance_id
+                if key in models.storage.all():
+                    if len(args) > 2:
+                        try:
+                            attr_dict = eval(args[2])
+                            if type(attr_dict) is dict:
+                                for k, v in attr_dict.items():
+                                    if args[0] == "Place":
+                                        if k in integers:
+                                            try:
+                                                v = int(v)
+                                            except ValueError:
+                                                v = 0
+                                        elif k in floats:
+                                            try:
+                                                v = float(v)
+                                            except ValueError:
+                                                v = 0.0
+                                    setattr(models.storage.all()[key], k, v)
+                                models.storage.all()[key].save()
+                            else:
+                                print("** dictionary must be valid **")
+                        except:
+                            print("** dictionary must be valid **")
+                    else:
+                        print("** dictionary missing **")
+                else:
+                    print("** no instance found **")
+            else:
+                print("** instance id missing **")
+        else:
+            print("** class doesn't exist **")
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
+
