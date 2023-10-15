@@ -163,81 +163,81 @@ class HBNBCommand(cmd.Cmd):
                    obj_list.append(str(obj_dict[key]))
            print("[" + ", ".join(obj_list) + "]")
 
-    def do_update(self, arg):
-        """ Update an instance based on the class name and id """
-    args = shlex.split(arg)
-    if len(args) == 0:
-        print("** class name missing **")
-    elif args[0] in classes:
-        if len(args) > 1:
-            instance_id = args[1]
-            key = args[0] + "." + instance_id
-            if key in models.storage.all():
-                if len(args) > 2:
-                    attribute_name = args[2]
-                    if len(args) > 3:
-                        attribute_value = args[3]
-                        if args[0] == "Place":
-                            if attribute_name in integers:
-                                try:
-                                    attribute_value = int(attribute_value)
-                                except ValueError:
-                                    attribute_value = 0
-                            elif attribute_name in floats:
-                                try:
-                                    attribute_value = float(attribute_value)
-                                except ValueError:
-                                    attribute_value = 0.0
-                        setattr(models.storage.all()[key], attribute_name, attribute_value)
-                        models.storage.all()[key].save()
-                    else:
-                        print("** value missing **")
-                else:
-                    print("** attribute name missing **")
-            else:
-                print("** no instance found **")
-        else:
-            print("** instance id missing **")
-    else:
-        print("** class doesn't exist **")
-
     # def do_update(self, arg):
     #     """ Update an instance based on the class name and id """
-    #     args = shlex.split(arg)
-    #     if len(args) == 0:
-    #         print("** class name missing **")
-    #     elif args[0] in classes:
-    #         if len(args) > 1:
-    #             instance_id = args[1]
-    #             key = args[0] + "." + instance_id
-    #             if key in models.storage.all():
-    #                 if len(args) > 2:
-    #                     attribute_name = args[2]
-    #                     if len(args) > 3:
-    #                         attribute_value = args[3]
-    #                         if args[0] == "Place":
-    #                             if attribute_name in integers:
-    #                                 try:
-    #                                     attribute_value = int(attribute_value)
-    #                                 except ValueError:
-    #                                     attribute_value = 0
-    #                             elif attribute_name in floats:
-    #                                 try:
-    #                                     attribute_value = float(attribute_value)
-    #                                 except ValueError:
-    #                                     attribute_value = 0.0
-    #                         setattr(models.storage.all()[key], attribute_name, attribute_value)
-    #                         models.storage.all()[key].save()
-    #                     else:
-    #                         print("** value missing **")
+    # args = shlex.split(arg)
+    # if len(args) == 0:
+    #     print("** class name missing **")
+    # elif args[0] in classes:
+    #     if len(args) > 1:
+    #         instance_id = args[1]
+    #         key = args[0] + "." + instance_id
+    #         if key in models.storage.all():
+    #             if len(args) > 2:
+    #                 attribute_name = args[2]
+    #                 if len(args) > 3:
+    #                     attribute_value = args[3]
+    #                     if args[0] == "Place":
+    #                         if attribute_name in integers:
+    #                             try:
+    #                                 attribute_value = int(attribute_value)
+    #                             except ValueError:
+    #                                 attribute_value = 0
+    #                         elif attribute_name in floats:
+    #                             try:
+    #                                 attribute_value = float(attribute_value)
+    #                             except ValueError:
+    #                                 attribute_value = 0.0
+    #                     setattr(models.storage.all()[key], attribute_name, attribute_value)
+    #                     models.storage.all()[key].save()
     #                 else:
-    #                     print("** attribute name missing **")
+    #                     print("** value missing **")
     #             else:
-    #                 print("** no instance found **")
+    #                 print("** attribute name missing **")
     #         else:
-    #             print("** instance id missing **")
+    #             print("** no instance found **")
     #     else:
-    #         print("** class doesn't exist **")
+    #         print("** instance id missing **")
+    # else:
+    #     print("** class doesn't exist **")
+
+    def do_update(self, arg):
+        """ Update an instance based on the class name and id """
+        args = shlex.split(arg)
+        if len(args) == 0:
+            print("** class name missing **")
+        elif args[0] in classes:
+            if len(args) > 1:
+                instance_id = args[1]
+                key = args[0] + "." + instance_id
+                if key in models.storage.all():
+                    if len(args) > 2:
+                        attribute_name = args[2]
+                        if len(args) > 3:
+                            attribute_value = args[3]
+                            if args[0] == "Place":
+                                if attribute_name in integers:
+                                    try:
+                                        attribute_value = int(attribute_value)
+                                    except ValueError:
+                                        attribute_value = 0
+                                elif attribute_name in floats:
+                                    try:
+                                        attribute_value = float(attribute_value)
+                                    except ValueError:
+                                        attribute_value = 0.0
+                            setattr(models.storage.all()[key], attribute_name, attribute_value)
+                            models.storage.all()[key].save()
+                        else:
+                            print("** value missing **")
+                    else:
+                        print("** attribute name missing **")
+                else:
+                    print("** no instance found **")
+            else:
+                print("** instance id missing **")
+        else:
+            print("** class doesn't exist **")
 
     def do_update_with_dict(self, arg):
         """ Update an instance based on the class name and id with a dictionary """
