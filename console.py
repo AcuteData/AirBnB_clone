@@ -59,21 +59,6 @@ class HBNBCommand(cmd.Cmd):
                 new_dict[key] = value
         return new_dict
 
-    # def do_create(self, arg):
-    #     """ Creates a new instance of a class """
-    #     args = shlex.split(arg)
-    #     if len(args) == 0:
-    #         print("** class name missing **")
-    #         return False
-    #     class_name = args[0]
-    #     if class_name in classes:
-    #         new_dict = self._key_value_parser(args[1:])
-    #         instance = classes[class_name](**new_dict)
-    #     else:
-    #         print("** class doesn't exist **")
-    #         return False
-    #     print(instance.id)
-    #     instance.save()
     def do_create(self, arg):
         """ Creates a new instance of a class """
         args = shlex.split(arg)
@@ -89,6 +74,21 @@ class HBNBCommand(cmd.Cmd):
             return False
         print(instance.id)
         instance.save()
+    # def do_create(self, arg):
+    #     """ Creates a new instance of a class """
+    #     args = shlex.split(arg)
+    #     if len(args) == 0:
+    #         print("** class name missing **")
+    #         return False
+    #     class_name = args[0]
+    #     if class_name in classes:
+    #         new_dict = self._key_value_parser(args[1:])
+    #         instance = classes[class_name](**new_dict)
+    #     else:
+    #         print("** class doesn't exist **")
+    #         return False
+    #     print(instance.id)
+    #     instance.save()
     
     # def do_show(self, arg):
     #     """ Prints an instance as a string based on the class and id """
