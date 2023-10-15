@@ -190,16 +190,16 @@ class HBNBCommand(cmd.Cmd):
                                                 attribute_value = 0.0
                                     setattr(models.storage.all()[key], attribute_name, attribute_value)
                                     models.storage.all()[key].save()
-                                else:
-                                    print("** value missing **")
-                            else:
-                                print("** attribute name missing **")
-                        else:
-                            print("** no instance found **")
-                   else:
-                       print("** instance id missing **")
-                else:
-                    print("** class doesn't exist **")
+                              else:
+                                         print("** value missing **")
+                              else:
+                                         print("** attribute name missing **")
+                          else:
+                                     print("** no instance found **")
+                      else:
+                                 print("** instance id missing **")
+                  else:
+                             print("** class doesn't exist **")
 
     # def do_update(self, arg):
     #     """ Update an instance based on the class name and id """
