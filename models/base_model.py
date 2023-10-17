@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-
+"""
+    The base model
+"""
 from datetime import datetime
 import models
 from os import getenv
